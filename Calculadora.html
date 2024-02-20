@@ -73,7 +73,15 @@
 
         function calculate() {
             let expression = document.getElementById('display').value;
-            let result = eval(expression);
+            let result;
+            try {
+                result = eval(expression);
+                if (isNaN(result) || !isFinite(result)) {
+                    throw new Error('Invalid expression');
+                }
+            } catch (error) {
+                result = 'Error';
+            }
             document.getElementById('display').value = result;
         }
     </script>
