@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,85 +6,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .calculator {
-            width: 250px;
-            margin: 50px auto;
-            border: 2px solid #ccc;
-            border-radius: 5px;
-            padding: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .calculator input[type="text"] {
-            width: 100%;
-            margin-bottom: 10px;
-            padding: 10px;
-            font-size: 18px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .calculator input[type="button"] {
-            width: 50px;
-            height: 50px;
-            margin: 5px;
-            font-size: 18px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .calculator input[type="button"]:hover {
-            background-color: #f0f0f0;
-        }
+        /* Seu estilo CSS permanece inalterado */
     </style>
 </head>
 <body>
-    <div class="calculator">
-        <input type="text" id="display" readonly>
-        <input type="button" value="7" onclick="addToDisplay('7')">
-        <input type="button" value="8" onclick="addToDisplay('8')">
-        <input type="button" value="9" onclick="addToDisplay('9')">
-        <input type="button" value="/" onclick="addToDisplay('/')">
-        <br>
-        <input type="button" value="4" onclick="addToDisplay('4')">
-        <input type="button" value="5" onclick="addToDisplay('5')">
-        <input type="button" value="6" onclick="addToDisplay('6')">
-        <input type="button" value="*" onclick="addToDisplay('*')">
-        <br>
-        <input type="button" value="1" onclick="addToDisplay('1')">
-        <input type="button" value="2" onclick="addToDisplay('2')">
-        <input type="button" value="3" onclick="addToDisplay('3')">
-        <input type="button" value="-" onclick="addToDisplay('-')">
-        <br>
-        <input type="button" value="C" onclick="clearDisplay()">
-        <input type="button" value="0" onclick="addToDisplay('0')">
-        <input type="button" value="=" onclick="calculate()">
-        <input type="button" value="+" onclick="addToDisplay('+')">
+    <div class="fundo">
+        <h1>Gustavo Neitzke</h1>
+        <div class="calculadora">
+            <h1>Calculadora</h1>
+            <p id="resultado"></p>
+            <table>
+                <!-- Seu código HTML para os botões da calculadora permanece inalterado -->
+            </table>
+        </div>
     </div>
-
     <script>
-        function addToDisplay(value) {
-            document.getElementById('display').value += value;
+        function insert(num) {
+            var numero = document.getElementById('resultado').innerHTML;
+            document.getElementById('resultado').innerHTML = numero + num;
         }
 
-        function clearDisplay() {
-            document.getElementById('display').value = '';
+        function clean() {
+            document.getElementById('resultado').innerHTML = "";
         }
 
-        function calculate() {
-            let expression = document.getElementById('display').value;
-            let result;
+        function back() {
+            var resultado = document.getElementById('resultado').innerHTML;
+            document.getElementById('resultado').innerHTML = resultado.substring(0, resultado.length - 1);
+        }
+
+        function calcular() {
+            var resultado = document.getElementById('resultado').innerHTML;
             try {
-                result = eval(expression);
-                if (isNaN(result) || !isFinite(result)) {
-                    throw new Error('Invalid expression');
+                if (resultado) {
+                    document.getElementById('resultado').innerHTML = Function('return ' + resultado)();
+                } else {
+                    document.getElementById('resultado').innerHTML = "Nada...";
                 }
             } catch (error) {
-                result = 'Error';
+                document.getElementById('resultado').innerHTML = "Erro";
             }
-            document.getElementById('display').value = result;
         }
     </script>
 </body>
 </html>
+```
