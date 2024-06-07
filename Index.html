@@ -100,7 +100,7 @@
         <input type="button" value="+" onclick="addToDisplay('+')" id="button-plus">
         <input type="button" value="C" onclick="clearDisplay()" class="clear">
         <input type="button" value="=" onclick="calculate()" id="button-equal">
-        <input type="button" value="%" onclick="addToDisplay('%')" id="button-percent">
+        <input type="button" value="%" onclick="addToDisplay('/100*')" id="button-percent">
         <button class="color-button" onclick="changeBackgroundColor()">Mudar Cor de Fundo</button>
     </div>
 
@@ -115,8 +115,12 @@
 
         function calculate() {
             var expression = document.getElementById('display').value;
-            var result = eval(expression);
-            document.getElementById('display').value = result;
+            try {
+                var result = eval(expression);
+                document.getElementById('display').value = result;
+            } catch (error) {
+                document.getElementById('display').value = 'Erro';
+            }
         }
 
         function changeBackgroundColor() {
@@ -126,4 +130,25 @@
                     case "red":
                         newColor = "#ff0000"; // Vermelho
                         break;
-                    case
+                    case "green":
+                        newColor = "#008000"; // Verde
+                        break;
+                    case "blue":
+                        newColor = "#0000ff"; // Azul
+                        break;
+                    case "yellow":
+                        newColor = "#ffff00"; // Amarelo
+                        break;
+                    case "purple":
+                        newColor = "#800080"; // Roxo
+                        break;
+                    default:
+                        alert("Cor não reconhecida! Usando cor padrão.");
+                        newColor = "#ffffff"; // Branco
+                }
+                document.querySelector('.calculator').style.backgroundColor = newColor;
+            }
+        }
+    </script>
+</body>
+</html>
