@@ -1,5 +1,5 @@
-<!DOCTYPE<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,77 +7,101 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
+            background-color: #f1f1f1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
 
         .calculator {
             width: 300px;
-            margin: 50px auto;
+            padding: 20px;
             border: 2px solid #ccc;
-            border-radius: 5px;
+            border-radius: 10px;
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
         }
 
         input[type="text"] {
-            width: calc(100% - 10px);
-            margin-bottom: 15px;
+            width: calc(100% - 22px);
+            margin-bottom: 10px;
             padding: 10px;
             border: 1px solid #ccc;
-            border-radius: 3px;
+            border-radius: 5px;
             font-size: 18px;
             text-align: right;
+            box-sizing: border-box;
+            outline: none;
+            float: left;
         }
 
         input[type="button"] {
-            width: 48%;
+            width: 30%;
             padding: 15px;
             margin: 1%;
             border: 1px solid #ccc;
-            border-radius: 3px;
+            border-radius: 5px;
             cursor: pointer;
-            background-color: #f2f2f2;
             font-size: 18px;
             transition: background-color 0.3s ease;
+            outline: none;
         }
 
         input[type="button"]:hover {
-            background-color: #e2e2e2;
+            background-color: #eaeaea;
         }
 
-        input[type="button"].operator {
-            background-color: #ffa500;
+        .clear {
+            width: 100%;
+            background-color: #ff6347;
             color: #fff;
+            border-color: #ff6347;
         }
 
-        input[type="button"].operator:hover {
-            background-color: #ff8c00;
+        .clear:hover {
+            background-color: #ff7f50;
+            border-color: #ff7f50;
+        }
+
+        .color-button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: #fff;
+            outline: none;
         }
     </style>
 </head>
 <body>
     <div class="calculator">
         <input type="text" id="display" readonly>
-        <input type="button" value="7" onclick="addToDisplay('7')">
-        <input type="button" value="8" onclick="addToDisplay('8')">
-        <input type="button" value="9" onclick="addToDisplay('9')">
-        <input type="button" value="+" onclick="addToDisplay('+')" class="operator">
+        <input type="button" value="1" onclick="addToDisplay('1')" id="button-1">
+        <input type="button" value="2" onclick="addToDisplay('2')" id="button-2">
+        <input type="button" value="3" onclick="addToDisplay('3')" id="button-3">
+        <input type="button" value="4" onclick="addToDisplay('4')" id="button-4">
+        <input type="button" value="5" onclick="addToDisplay('5')" id="button-5">
         <br>
-        <input type="button" value="4" onclick="addToDisplay('4')">
-        <input type="button" value="5" onclick="addToDisplay('5')">
-        <input type="button" value="6" onclick="addToDisplay('6')">
-        <input type="button" value="-" onclick="addToDisplay('-')" class="operator">
+        <input type="button" value="6" onclick="addToDisplay('6')" id="button-6">
+        <input type="button" value="7" onclick="addToDisplay('7')" id="button-7">
+        <input type="button" value="8" onclick="addToDisplay('8')" id="button-8">
+        <input type="button" value="9" onclick="addToDisplay('9')" id="button-9">
+        <input type="button" value="0" onclick="addToDisplay('0')" id="button-0">
         <br>
-        <input type="button" value="1" onclick="addToDisplay('1')">
-        <input type="button" value="2" onclick="addToDisplay('2')">
-        <input type="button" value="3" onclick="addToDisplay('3')">
-        <input type="button" value="*" onclick="addToDisplay('*')" class="operator">
-        <br>
-        <input type="button" value="C" onclick="clearDisplay()">
-        <input type="button" value="0" onclick="addToDisplay('0')">
-        <input type="button" value="=" onclick="calculate()" class="operator">
-        <input type="button" value="/" onclick="addToDisplay('/')" class="operator">
+        <input type="button" value="/" onclick="addToDisplay('/')" id="button-divide">
+        <input type="button" value="*" onclick="addToDisplay('*')" id="button-multiply">
+        <input type="button" value="-" onclick="addToDisplay('-')" id="button-minus">
+        <input type="button" value="+" onclick="addToDisplay('+')" id="button-plus">
+        <input type="button" value="C" onclick="clearDisplay()" class="clear">
+        <input type="button" value="=" onclick="calculate()" id="button-equal">
+        <input type="button" value="%" onclick="addToDisplay('%')" id="button-percent">
+        <button class="color-button" onclick="changeBackgroundColor()">Mudar Cor de Fundo</button>
     </div>
 
     <script>
@@ -94,6 +118,12 @@
             var result = eval(expression);
             document.getElementById('display').value = result;
         }
-    </script>
-</body>
-</html>
+
+        function changeBackgroundColor() {
+            var newColor = prompt("Digite o nome de uma cor em inglês (por exemplo, red para vermelho, blue para azul):");
+            if (newColor !== null) {
+                switch(newColor.toLowerCase()) {
+                    case "red":
+                        newColor = "#ff0000"; // Vermelho
+                        break;
+                    case
